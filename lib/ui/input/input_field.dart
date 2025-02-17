@@ -249,7 +249,7 @@ class UnderLineInputField extends StatelessWidget {
               prefixIcon: SvgPicture.asset(prefixIcon ?? ""),
               contentPadding: const EdgeInsets.only(top: 15, bottom: 10),
               border: UnderlineInputBorder(
-                  borderSide: BorderSide(color: borderColor)),
+                  borderSide: BorderSide(color: borderColor, width: 0.6)),
               filled: false,
               enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: borderColor)),

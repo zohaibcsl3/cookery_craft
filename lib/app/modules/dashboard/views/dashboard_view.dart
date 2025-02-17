@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../ui/navbar.dart';
+import '../../cart/views/cart_view.dart';
 import '../controllers/dashboard_controller.dart';
 
 class DashboardView extends StatefulWidget {
@@ -33,9 +34,7 @@ class _DashboardViewState extends State<DashboardView> {
               child: AccountView(),
             );
           case 2:
-            return Center(
-              child: Text("data"),
-            );
+            return Center(child: CartView());
           case 3:
             return Center(
               child: NotificationsView(),

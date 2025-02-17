@@ -97,7 +97,7 @@ class CarousalCard extends StatelessWidget {
                   ),
                   h1,
                   SizedBox(
-                    width: MediaQuery.of(context).size.width / 1.6,
+                    width: 70.w,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
