@@ -300,8 +300,10 @@ class RecipeView extends GetView<RecipeController> {
                                             .recipe.ingredients.length,
                                         itemBuilder:
                                             (BuildContext context, int index) {
-                                          return Text(controller
-                                              .recipe.ingredients[index].name);
+                                          return Text(
+                                            controller
+                                                .recipe.ingredients[index].name,
+                                          );
                                         },
                                       )
                                     ],
