@@ -1,3 +1,4 @@
+import 'package:cookery_craft/app/modules/dashboard/model/recipe_model.dart';
 import 'package:cookery_craft/ui/title_widgets/text_styles.dart';
 import 'package:cookery_craft/ui/widgets/on_click.dart';
 import 'package:flutter/material.dart';
@@ -11,9 +12,9 @@ import '../../utils/heights_and_widths.dart';
 import '../routes/app_pages.dart';
 
 class RecipeCard extends StatefulWidget {
-  const RecipeCard({super.key, this.isFavorite = false});
+  const RecipeCard({super.key, required this.recipe});
 
-  final bool isFavorite;
+  final Recipe recipe;
 
   @override
   State<RecipeCard> createState() => _RecipeCardState();
@@ -24,7 +25,7 @@ class _RecipeCardState extends State<RecipeCard> {
   Widget build(BuildContext context) {
     return OnClick(
       onTap: () {
-        Get.toNamed(Routes.RECIPE);
+        Get.toNamed(Routes.RECIPE, arguments: widget.recipe);
       },
       child: Card(
         shape: RoundedRectangleBorder(
@@ -42,7 +43,7 @@ class _RecipeCardState extends State<RecipeCard> {
                 child: Container(
                   width: double.infinity,
                   decoration: customBoxDecorationImage(
-                    imageAsset: Assets.breakfast1,
+                    imageAsset: widget.recipe.imagePath,
                   ),
                   child: Stack(
                     children: [
@@ -57,7 +58,7 @@ class _RecipeCardState extends State<RecipeCard> {
                             8.0,
                           ),
                           child: SvgPicture.asset(
-                            widget.isFavorite
+                            widget.recipe.isFavorite
                                 ? Assets.svgHeartFilled
                                 : Assets.svgHeartUnfilled,
                             // height: widget.isFavorite ? 16.0 : 12.0,
@@ -72,9 +73,10 @@ class _RecipeCardState extends State<RecipeCard> {
               h1P5,
               Expanded(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Healthy Taco Salad with fresh vegetable",
+                      widget.recipe.name,
                       textAlign: TextAlign.center,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
@@ -120,7 +122,7 @@ class _RecipeCardState extends State<RecipeCard> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             SvgPicture.asset(
-                              Assets.svgCalories,
+                              Assets.svgTimeCircle,
                               height: 14.0,
                               width: 14.0,
                               color: Colors.grey.shade500,
@@ -129,7 +131,7 @@ class _RecipeCardState extends State<RecipeCard> {
                               width: 10.0,
                             ),
                             Text(
-                              "120 Kcal",
+                              widget.recipe.makeTime,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: textFieldStyles(

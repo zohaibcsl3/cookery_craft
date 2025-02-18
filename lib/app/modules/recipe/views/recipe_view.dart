@@ -17,6 +17,7 @@ class RecipeView extends GetView<RecipeController> {
 
   @override
   Widget build(BuildContext context) {
+    final RecipeController controller = Get.put(RecipeController());
     return Scaffold(
       body: SafeArea(
         child: SizedBox(
@@ -28,7 +29,7 @@ class RecipeView extends GetView<RecipeController> {
                 height: 25.h,
                 width: double.infinity,
                 decoration: customBoxDecorationImage(
-                  imageAsset: Assets.breakfast6,
+                  imageAsset: controller.recipe.imagePath,
                   radius: 0,
                 ),
                 child: Padding(
@@ -103,7 +104,7 @@ class RecipeView extends GetView<RecipeController> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Healthy Taco Salad",
+                              controller.recipe.name,
                               style: textFieldStyles(
                                 weight: FontWeight.bold,
                                 size: 24.0,
@@ -117,7 +118,7 @@ class RecipeView extends GetView<RecipeController> {
                                 ),
                                 w1P5,
                                 Text(
-                                  "20 min",
+                                  controller.recipe.makeTime,
                                   style: context.textTheme.bodyLarge?.copyWith(
                                     color: Colors.grey.shade400,
                                   ),
@@ -128,8 +129,7 @@ class RecipeView extends GetView<RecipeController> {
                         ),
                         h1,
                         ExpandableTextWidget(
-                            text:
-                                "This Healthy Taco Salad is the universal delight of taco night This Healthy Taco Salad is the universal delight of taco night This Healthy Taco Salad is the universal delight of taco night This Healthy Taco Salad is the universal delight of taco night This Healthy Taco Salad is the universal delight of taco night This Healthy Taco Salad is the universal delight of taco night This Healthy Taco Salad is the universal delight of taco night This Healthy Taco Salad is the universal delight of taco night This Healthy Taco Salad is the universal delight of taco night"),
+                            text: controller.recipe.description),
                         h1,
                         Row(
                           children: [
@@ -152,7 +152,7 @@ class RecipeView extends GetView<RecipeController> {
                                       ),
                                       w2,
                                       Text(
-                                        "65g carbs",
+                                        "${controller.recipe.benefits.carbs} carbs",
                                         style: textFieldStyles(
                                           size: 16.0,
                                         ),
@@ -170,13 +170,13 @@ class RecipeView extends GetView<RecipeController> {
                                         ),
                                         child: Padding(
                                           padding: const EdgeInsets.all(6.0),
-                                          child:
-                                              SvgPicture.asset(Assets.svgHerbs),
+                                          child: SvgPicture.asset(
+                                              Assets.svgCalories),
                                         ),
                                       ),
                                       w2,
                                       Text(
-                                        "65g carbs",
+                                        "${controller.recipe.benefits.calories} Kcal",
                                         style: textFieldStyles(
                                           size: 16.0,
                                         ),
@@ -199,13 +199,13 @@ class RecipeView extends GetView<RecipeController> {
                                         ),
                                         child: Padding(
                                           padding: const EdgeInsets.all(6.0),
-                                          child:
-                                              SvgPicture.asset(Assets.svgHerbs),
+                                          child: SvgPicture.asset(
+                                              Assets.svgProteins),
                                         ),
                                       ),
                                       w2,
                                       Text(
-                                        "65g carbs",
+                                        "${controller.recipe.benefits.proteins} proteins",
                                         style: textFieldStyles(
                                           size: 16.0,
                                         ),
@@ -224,12 +224,12 @@ class RecipeView extends GetView<RecipeController> {
                                         child: Padding(
                                           padding: const EdgeInsets.all(6.0),
                                           child:
-                                              SvgPicture.asset(Assets.svgHerbs),
+                                              SvgPicture.asset(Assets.svgFats),
                                         ),
                                       ),
                                       w2,
                                       Text(
-                                        "65g carbs",
+                                        "${controller.recipe.benefits.fats} fats",
                                         style: textFieldStyles(
                                           size: 16.0,
                                         ),
@@ -295,7 +295,15 @@ class RecipeView extends GetView<RecipeController> {
                                   child: TabBarView(
                                     children: [
                                       IngredientsView(),
-                                      Container(),
+                                      ListView.builder(
+                                        itemCount: controller
+                                            .recipe.ingredients.length,
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
+                                          return Text(controller
+                                              .recipe.ingredients[index].name);
+                                        },
+                                      )
                                     ],
                                   ),
                                 ),

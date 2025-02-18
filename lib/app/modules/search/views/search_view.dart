@@ -10,6 +10,7 @@ import '../../../../ui/widgets/on_click.dart';
 import '../../../../utils/custom_card.dart';
 import '../../../../utils/heights_and_widths.dart';
 import '../../../common_widgets/app_colors.dart';
+import '../../dashboard/controllers/dashboard_controller.dart';
 import '../controllers/search_controller.dart';
 
 class SearchView extends StatefulWidget {
@@ -23,6 +24,7 @@ class _SearchViewState extends State<SearchView> {
   @override
   Widget build(BuildContext context) {
     final SearchViewController controller = Get.put(SearchViewController());
+    final DashboardController _controller = Get.find<DashboardController>();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: appBackgroundColor,
@@ -100,9 +102,17 @@ class _SearchViewState extends State<SearchView> {
               scrollDirection: Axis.horizontal,
               child: Row(
                   children: List.generate(
-                10,
+                _controller.recipeResponse.recipes
+                    .where((recipe) => recipe.isFavorite)
+                    .length,
                 (index) {
-                  return RecipeCard2();
+                  var recipeList = _controller.recipeResponse.recipes
+                      .where((recipe) => recipe.isFavorite)
+                      .toList();
+
+                  return RecipeCard2(
+                    recipe: recipeList[index],
+                  );
                 },
               )),
             ),
@@ -111,12 +121,22 @@ class _SearchViewState extends State<SearchView> {
               leftText: "Editor's Choice",
             ),
             h2,
-            Expanded(
-                child: ListView.builder(
-                    itemBuilder: (context, index) {
-                      return RecipeCard3();
-                    },
-                    itemCount: 10))
+            Expanded(child: Obx(() {
+              var recipeList = _controller.recipeResponse.recipes
+                  .where((recipe) =>
+                      recipe.type.toLowerCase() ==
+                      controller.selectedCategory.value.toLowerCase())
+                  .toList();
+              return ListView.builder(
+                itemBuilder: (context, index) {
+                  var recipe = recipeList[index];
+                  return RecipeCard3(
+                    recipe: recipe,
+                  );
+                },
+                itemCount: recipeList.length,
+              );
+            }))
           ],
         ),
       ),

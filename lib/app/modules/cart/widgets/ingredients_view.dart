@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../ui/button/primary_button.dart';
 import '../../../../utils/display/display_utils.dart';
 import '../../../common_widgets/cart_tile_1.dart';
+import '../../../common_widgets/recipe_constants.dart';
 
 class IngredientsView extends StatefulWidget {
   const IngredientsView({super.key});
@@ -31,11 +31,14 @@ class _IngredientsViewState extends State<IngredientsView> {
               mainAxisSpacing: 8,
               childAspectRatio: 3.8,
             ),
-            itemCount: 20,
+            itemCount: ingredientsList.length + 1,
             // Number of items in the grid
             itemBuilder: (context, index) {
-              return index != 19
-                  ? CartTile1()
+              return ingredientsList.length != index
+                  ? CartTile1(
+                      name: ingredientsList[index]["name"]!,
+                      imagePath: ingredientsList[index]["image"]!,
+                    )
                   : Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: PrimaryButton(

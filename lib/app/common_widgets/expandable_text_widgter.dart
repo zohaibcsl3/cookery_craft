@@ -18,8 +18,9 @@ class _ExpandableTextWidgetState extends State<ExpandableTextWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          _isExpanded ? widget.text : '${widget.text.substring(0, 150)}...',
+          _isExpanded ? widget.text : '${widget.text.substring(0, 30)}...',
           // Show truncated text if not expanded
+          textAlign: TextAlign.left,
           style: TextStyle(fontSize: 16),
         ),
         GestureDetector(

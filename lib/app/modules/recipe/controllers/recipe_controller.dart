@@ -1,23 +1,16 @@
+import 'package:cookery_craft/app/modules/dashboard/model/recipe_model.dart';
 import 'package:get/get.dart';
 
 class RecipeController extends GetxController {
-  //TODO: Implement RecipeController
+  Recipe recipe = Recipe.empty();
 
-  final count = 0.obs;
   @override
   void onInit() {
+    if (Get.arguments != null) {
+      recipe = Get.arguments;
+      print(recipe.name);
+      print("Arguments Available");
+    }
     super.onInit();
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }

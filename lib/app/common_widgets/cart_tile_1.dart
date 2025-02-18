@@ -1,4 +1,3 @@
-import 'package:cookery_craft/generated/assets.dart';
 import 'package:cookery_craft/ui/title_widgets/text_styles.dart';
 import 'package:cookery_craft/ui/widgets/on_click.dart';
 import 'package:cookery_craft/utils/custom_card.dart';
@@ -8,8 +7,14 @@ import 'package:get/get.dart';
 import '../../utils/heights_and_widths.dart';
 
 class CartTile1 extends StatefulWidget {
-  const CartTile1({super.key, this.isCartPage = false});
+  const CartTile1(
+      {super.key,
+      this.isCartPage = false,
+      required this.name,
+      required this.imagePath});
 
+  final String name;
+  final String imagePath;
   final bool isCartPage;
 
   @override
@@ -41,7 +46,7 @@ class _CartTile1State extends State<CartTile1> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Image.asset(Assets.pngCheese),
+                    child: Image.asset(widget.imagePath),
                   ),
                 ),
                 w2,
@@ -50,7 +55,7 @@ class _CartTile1State extends State<CartTile1> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Cheese",
+                      widget.name,
                       style: textFieldStyles(
                         weight: FontWeight.bold,
                         size: 18.0,

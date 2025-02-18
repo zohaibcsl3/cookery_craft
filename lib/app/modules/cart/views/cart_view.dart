@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import '../../../../utils/heights_and_widths.dart';
 import '../../../common_widgets/app_colors.dart';
 import '../../../common_widgets/cart_tile_1.dart';
+import '../../../common_widgets/recipe_constants.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/cart_controller.dart';
 
@@ -49,11 +50,13 @@ class CartView extends GetView<CartController> {
                   mainAxisSpacing: 8,
                   childAspectRatio: 3.8,
                 ),
-                itemCount: 20,
+                itemCount: ingredientsList.length,
                 // Number of items in the grid
                 itemBuilder: (context, index) {
                   return CartTile1(
                     isCartPage: true,
+                    name: ingredientsList[index]["name"]!,
+                    imagePath: ingredientsList[index]["image"]!,
                   );
                 },
               ),

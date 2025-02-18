@@ -1,4 +1,5 @@
 import 'package:cookery_craft/app/common_widgets/recipe_card.dart';
+import 'package:cookery_craft/app/modules/dashboard/controllers/dashboard_controller.dart';
 import 'package:cookery_craft/ui/title_widgets/text_styles.dart';
 import 'package:cookery_craft/ui/title_widgets/title_widget.dart';
 import 'package:cookery_craft/ui/widgets/custom_see_all.dart';
@@ -21,6 +22,7 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     final HomeController controller = Get.put(HomeController());
+    final DashboardController _controller = Get.find<DashboardController>();
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(
@@ -30,6 +32,7 @@ class HomeView extends GetView<HomeController> {
         child: Column(
           children: [
             h2,
+
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -144,20 +147,28 @@ class HomeView extends GetView<HomeController> {
             ),
             h1,
             Expanded(
-              child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, // 2 items per row
-                  crossAxisSpacing: 10, // Space between columns
-                  mainAxisSpacing: 10,
-                  childAspectRatio: 0.7,
-                ),
-                itemCount: 20, // Number of items in the grid
-                itemBuilder: (context, index) {
-                  return RecipeCard(
-                    isFavorite: index % 2 == 0,
-                  );
-                },
-              ),
+              child: Obx(() {
+                var recipeList = _controller.recipeResponse.recipes
+                    .where((recipe) =>
+                        recipe.type.toLowerCase() ==
+                        controller.selectedCategory.value.toLowerCase())
+                    .toList(); // Convert to List
+                return GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, // 2 items per row
+                    crossAxisSpacing: 10, // Space between columns
+                    mainAxisSpacing: 10,
+                    childAspectRatio: 0.7,
+                  ),
+                  itemCount: recipeList.length,
+                  itemBuilder: (context, index) {
+                    var recipe = recipeList[index];
+                    return RecipeCard(
+                      recipe: recipe,
+                    );
+                  },
+                );
+              }),
             ),
             // SingleChildScrollView(
             //   scrollDirection: Axis.horizontal,

@@ -2,12 +2,54 @@
 class Assets {
   Assets._();
 
+  static const String beverages1 = 'assets/beverages/1.png';
+  static const String beverages2 = 'assets/beverages/2.png';
+  static const String beverages3 = 'assets/beverages/3.png';
+  static const String beverages4 = 'assets/beverages/4.png';
   static const String breakfast1 = 'assets/breakfast/1.png';
   static const String breakfast2 = 'assets/breakfast/2.png';
   static const String breakfast3 = 'assets/breakfast/3.png';
   static const String breakfast4 = 'assets/breakfast/4.png';
   static const String breakfast5 = 'assets/breakfast/5.png';
   static const String breakfast6 = 'assets/breakfast/6.png';
+  static const String dessert1 = 'assets/dessert/1.jpeg';
+  static const String dessert2 = 'assets/dessert/2.jpg';
+  static const String dessert3 = 'assets/dessert/3.jpg';
+  static const String dessert4 = 'assets/dessert/4.jpg';
+  static const String dessert5 = 'assets/dessert/5.jpg';
+  static const String dessert6 = 'assets/dessert/6.jpg';
+  static const String dessert7 = 'assets/dessert/7.png';
+  static const String dinner1 = 'assets/dinner/1.png';
+  static const String dinner2 = 'assets/dinner/2.png';
+  static const String dinner3 = 'assets/dinner/3.png';
+  static const String dinner4 = 'assets/dinner/4.png';
+  static const String dinner5 = 'assets/dinner/5.png';
+  static const String ingredientsAvocado = 'assets/ingredients/avocado.png';
+  static const String ingredientsBasil = 'assets/ingredients/basil.png';
+  static const String ingredientsBerries = 'assets/ingredients/berries.png';
+  static const String ingredientsCabbage = 'assets/ingredients/cabbage.png';
+  static const String ingredientsChickpeas = 'assets/ingredients/chickpeas.png';
+  static const String ingredientsCloves = 'assets/ingredients/cloves.png';
+  static const String ingredientsCoconut = 'assets/ingredients/coconut.png';
+  static const String ingredientsDar = 'assets/ingredients/dar.png';
+  static const String ingredientsFish = 'assets/ingredients/fish.png';
+  static const String ingredientsGarlic = 'assets/ingredients/garlic.png';
+  static const String ingredientsGreenOnion = 'assets/ingredients/greenOnion.png';
+  static const String ingredientsJackfruit = 'assets/ingredients/jackfruit.png';
+  static const String ingredientsKimchi = 'assets/ingredients/kimchi.png';
+  static const String ingredientsMeat = 'assets/ingredients/meat.png';
+  static const String ingredientsOnion = 'assets/ingredients/onion.png';
+  static const String ingredientsPeanuts = 'assets/ingredients/peanuts.png';
+  static const String ingredientsRice = 'assets/ingredients/rice.png';
+  static const String ingredientsTortillaChips = 'assets/ingredients/tortillaChips.png';
+  static const String ingredientsTurmeric = 'assets/ingredients/turmeric.png';
+  static const String ingredientsTurmerice = 'assets/ingredients/turmerice.png';
+  static const String lunch1 = 'assets/lunch/1.jpg';
+  static const String lunch2 = 'assets/lunch/2.jpg';
+  static const String lunch3 = 'assets/lunch/3.jpg';
+  static const String lunch5 = 'assets/lunch/5.jpg';
+  static const String lunch6 = 'assets/lunch/6.jpg';
+  static const String lunch7 = 'assets/lunch/7.png';
   static const String pngApple = 'assets/png/apple.png';
   static const String pngAppleLight = 'assets/png/apple_light.png';
   static const String pngCheese = 'assets/png/cheese.png';
@@ -23,6 +65,11 @@ class Assets {
   static const String pngOrange = 'assets/png/orange.png';
   static const String pngRec1 = 'assets/png/rec1.png';
   static const String pngRec2 = 'assets/png/rec2.png';
+  static const String snacks1 = 'assets/snacks/1.jpg';
+  static const String snacks2 = 'assets/snacks/2.jpg';
+  static const String snacks3 = 'assets/snacks/3.jpg';
+  static const String snacks4 = 'assets/snacks/4.jpg';
+  static const String snacks5 = 'assets/snacks/5.jpg';
   static const String svgArrowRight = 'assets/svg/arrow_right.svg';
   static const String svgBuy = 'assets/svg/buy.svg';
   static const String svgCalories = 'assets/svg/calories.svg';
@@ -60,4 +107,5 @@ class Assets {
   static const String svgVolumeSelected = 'assets/svg/volume_selected.svg';
   static const String svgVolumeUnselected = 'assets/svg/volume_unselected.svg';
   static const String svgWhatsapp = 'assets/svg/whatsapp.svg';
+
 }

@@ -1,10 +1,14 @@
+import 'package:cookery_craft/app/common_widgets/recipe_constants.dart';
 import 'package:get/get.dart';
 
 import '../../../../generated/assets.dart';
 import '../model/dashboard_model.dart';
+import '../model/recipe_model.dart';
 
 class DashboardController extends GetxController {
   // Observable bottomBar
+
+  final RecipeResponse recipeResponse = RecipeResponse.fromJson(recipesJson);
   RxInt selectedIndex = RxInt(0);
   RxList<BottomNavModel> bottomBar = [
     BottomNavModel(
