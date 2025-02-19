@@ -98,7 +98,7 @@ class _AccountViewState extends State<AccountView> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Zohaib Aamir",
+                            "Hamza",
                             style: textFieldStyles(
                               color: Colors.black,
                               size: 20.0,

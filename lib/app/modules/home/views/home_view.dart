@@ -53,7 +53,7 @@ class HomeView extends GetView<HomeController> {
                     ),
                     h0P2,
                     Text(
-                      "Zohaib Aamir",
+                      "Hamza",
                       style: Get.context!.textTheme.bodyMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                         fontSize: 24.0,

@@ -115,7 +115,7 @@ class CarousalCard extends StatelessWidget {
                             ),
                             w2,
                             Text(
-                              "Zohaib Aamir",
+                              "Hamza",
                               style: context.textTheme.bodyLarge?.copyWith(
                                 color: Colors.white,
                               ),

@@ -42,12 +42,12 @@ class PersonalDetailsWidget extends StatelessWidget {
             children: [
               PersonalDetailsInfo(
                 fieldIcon: Assets.svgProfile,
-                fieldName: 'John Doe',
+                fieldName: 'Hamza',
               ),
               customDivider(color: Get.theme.primaryColor),
               const PersonalDetailsInfo(
                 fieldIcon: Assets.svgMail,
-                fieldName: 'johndoe@gmail.com',
+                fieldName: 'eve.holt@reqres.in',
                 isEditable: true,
               ),
               customDivider(color: Get.theme.primaryColor),

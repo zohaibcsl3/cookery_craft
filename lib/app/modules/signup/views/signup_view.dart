@@ -8,6 +8,7 @@ import '../../../../ui/input/textfields.dart';
 import '../../../../ui/widgets/password_suffix_widget.dart';
 import '../../../../ui/widgets/rich_text_widget.dart';
 import '../../../../utils/common_widgets.dart';
+import '../../../../utils/display/display_utils.dart';
 import '../../../../utils/heights_and_widths.dart';
 import '../../../../utils/helper_widgets.dart';
 import '../../../routes/app_pages.dart';
@@ -36,104 +37,121 @@ class SignupView extends GetView<SignupController> {
                 horizontal: 16.0,
               ),
               child: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    textFieldsWithTitle(
-                      hintText: "hintText",
-                      title: "Email",
-                    ),
-                    h2,
-                    Obx(() {
-                      return textFieldsWithTitle(
-                          title: "Password",
-                          hintText: "Enter Password",
-                          obscureText: controller.isVisible.value,
-                          suffix: PasswordSuffixIcon(
-                              isPasswordVisible: controller.isVisible.value,
-                              onTap: () {
-                                controller.changeVisible();
-                              }));
-                    }),
-                    h2,
-                    Obx(() {
-                      return textFieldsWithTitle(
-                          title: "Confirm Password",
-                          hintText: "Confirm Password",
-                          obscureText: controller.isConfirmVisible.value,
-                          suffix: PasswordSuffixIcon(
-                              isPasswordVisible:
-                                  controller.isConfirmVisible.value,
-                              onTap: () {
-                                controller.changeConfirmVisible();
-                              }));
-                    }),
-                    h2,
-                    // Align(
-                    //   alignment: Alignment.topRight,
-                    //   child: Text(
-                    //     "Forgot Password?",
-                    //     style: TextStyle(
-                    //       color: Get.theme.primaryColor,
-                    //       fontWeight: FontWeight.bold,
-                    //     ),
-                    //   ),
-                    // ),
-                    // h2,
-                    PrimaryButton(
-                      onPressed: () {
-                        Get.offAllNamed(Routes.DASHBOARD);
-                      },
-                      title: "Sign Up",
-                      height: 60.0,
-                      backgroundColor: Get.theme.primaryColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16.0,
-                      borderRadius: 16.0,
-                    ),
-                    h0P5,
-                    RichTextWidget(
-                      firstText: "Already have an account",
-                      secondText: "Sign in",
-                      secondTextColor: Get.theme.primaryColor,
-                      fontSize: 16.0,
-                      onPressed: () {
-                        Get.toNamed(
-                          Routes.LOGIN,
-                        );
-                      },
-                    ),
-                    h2,
-                    Row(
-                      children: [
-                        Expanded(
-                            child: customDivider(
-                          hPadding: 8.0,
-                        )),
-                        Text(
-                          "OR",
-                          style: Get.textTheme.bodyMedium
-                              ?.copyWith(color: Colors.grey.shade400),
+                child: Form(
+                  key: controller.formKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      textFieldsWithTitle(
+                          hintText: "Enter Email",
+                          title: "Email",
+                          controller: controller.emailController),
+                      h2,
+                      Obx(() {
+                        return textFieldsWithTitle(
+                            title: "Password",
+                            hintText: "Enter Password",
+                            controller: controller.passwordController,
+                            obscureText: controller.isVisible.value,
+                            suffix: PasswordSuffixIcon(
+                                isPasswordVisible: controller.isVisible.value,
+                                onTap: () {
+                                  controller.changeVisible();
+                                }));
+                      }),
+                      h2,
+                      Obx(() {
+                        return textFieldsWithTitle(
+                            title: "Confirm Password",
+                            hintText: "Confirm Password",
+                            controller: controller.confirmPasswordController,
+                            obscureText: controller.isConfirmVisible.value,
+                            suffix: PasswordSuffixIcon(
+                                isPasswordVisible:
+                                    controller.isConfirmVisible.value,
+                                onTap: () {
+                                  controller.changeConfirmVisible();
+                                }));
+                      }),
+                      h2,
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: Text(
+                          "Forgot Password?",
+                          style: TextStyle(
+                            color: Get.theme.primaryColor,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                        Expanded(
-                            child: customDivider(
-                          hPadding: 8.0,
-                        )),
-                      ],
-                    ),
-                    h2,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        LogoButton(logoPath: Assets.pngGoogle),
-                        LogoButton(logoPath: Assets.pngFacebook),
-                        LogoButton(
-                          logoPath: Assets.pngAppleLight,
-                        ),
-                      ],
-                    ),
-                  ],
+                      ),
+                      h2,
+                      PrimaryButton(
+                        onPressed: () {
+                          // Get.offAllNamed(Routes.DASHBOARD);
+                          if (controller.formKey.currentState!.validate()) {
+                            if (controller.passwordController.text ==
+                                controller.confirmPasswordController.text) {
+                              controller.signup();
+                            } else {
+                              DisplayUtils.showSnackBar(
+                                  context, "Password not matched");
+                            }
+                          } else {
+                            DisplayUtils.showSnackBar(
+                                context, "All fields are required");
+                          }
+                        },
+                        title: "Sign Up",
+                        height: 60.0,
+                        backgroundColor: Get.theme.primaryColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.0,
+                        borderRadius: 16.0,
+                      ),
+                      h0P5,
+                      RichTextWidget(
+                        firstText: "Already have an account",
+                        secondText: "Sign in",
+                        secondTextColor: Get.theme.primaryColor,
+                        fontSize: 16.0,
+                        onPressed: () {
+                          Get.toNamed(
+                            Routes.LOGIN,
+                          );
+                        },
+                      ),
+                      h2,
+                      Row(
+                        children: [
+                          Expanded(
+                              child: customDivider(
+                            hPadding: 8.0,
+                          )),
+                          Text(
+                            "OR",
+                            style: Get.textTheme.bodyMedium
+                                ?.copyWith(color: Colors.grey.shade400),
+                          ),
+                          Expanded(
+                              child: customDivider(
+                            hPadding: 8.0,
+                          )),
+                        ],
+                      ),
+                      h2,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          LogoButton(logoPath: Assets.pngGoogle),
+                          LogoButton(logoPath: Assets.pngFacebook),
+                          LogoButton(
+                            logoPath: Assets.pngAppleLight,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
