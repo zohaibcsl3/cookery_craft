@@ -13,9 +13,10 @@ import '../routes/app_pages.dart';
 import 'app_colors.dart';
 
 class RecipeCard4 extends StatefulWidget {
-  const RecipeCard4({super.key, required this.recipe});
+  const RecipeCard4({super.key, required this.recipe, this.onFavTap});
 
   final Recipe recipe;
+  final VoidCallback? onFavTap;
 
   @override
   State<RecipeCard4> createState() => _RecipeCard4State();
@@ -51,19 +52,22 @@ class _RecipeCard4State extends State<RecipeCard4> {
                       Positioned(
                         right: 16,
                         top: 16,
-                        child: Container(
-                          height: 24.sp,
-                          width: 24.sp,
-                          decoration: customBoxDecoration(),
-                          padding: EdgeInsets.all(
-                            8.0,
-                          ),
-                          child: SvgPicture.asset(
-                            widget.recipe.isFavorite
-                                ? Assets.svgHeartFilled
-                                : Assets.svgHeartUnfilled,
-                            // height: widget.isFavorite ? 16.0 : 12.0,
-                            // width: widget.isFavorite ? 16.0 : 12.0,
+                        child: OnClick(
+                          onTap: widget.onFavTap ?? () {},
+                          child: Container(
+                            height: 24.sp,
+                            width: 24.sp,
+                            decoration: customBoxDecoration(),
+                            padding: EdgeInsets.all(
+                              8.0,
+                            ),
+                            child: SvgPicture.asset(
+                              widget.recipe.isFavorite
+                                  ? Assets.svgHeartFilled
+                                  : Assets.svgHeartUnfilled,
+                              // height: widget.isFavorite ? 16.0 : 12.0,
+                              // width: widget.isFavorite ? 16.0 : 12.0,
+                            ),
                           ),
                         ),
                       )

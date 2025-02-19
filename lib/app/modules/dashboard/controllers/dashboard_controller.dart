@@ -51,4 +51,21 @@ class DashboardController extends GetxController {
     }
     update(); // Notifies listeners to update UI
   }
+
+  void toggleFavoriteStatus(String recipeName) {
+    Recipe? recipe = recipeResponse.recipes.firstWhere(
+      (r) => r.name.toLowerCase() == recipeName.toLowerCase(),
+    );
+    if (recipe != null) {
+      recipe.isFavorite = !recipe.isFavorite;
+      int recipeIndex = recipeResponse.recipes.indexOf(recipe);
+      print(
+          "Before Update -->${recipeResponse.recipes[recipeIndex].isFavorite}");
+      recipeResponse.recipes[recipeIndex] = recipe;
+
+      update();
+      print(
+          "After Update -->${recipeResponse.recipes[recipeIndex].isFavorite}");
+    }
+  }
 }

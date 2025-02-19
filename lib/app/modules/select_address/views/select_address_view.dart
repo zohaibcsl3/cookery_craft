@@ -79,7 +79,9 @@ class SelectAddressView extends GetView<SelectAddressController> {
             ),
             PrimaryButton(
               onPressed: () {
-                Get.toNamed(Routes.ADD_CARD);
+                Get.toNamed(Routes.ADD_CARD)?.then((v) {
+                  Get.back();
+                });
               },
               title: "Add Card",
               height: 50.0,

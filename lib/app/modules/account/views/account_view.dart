@@ -1,4 +1,3 @@
-import 'package:cookery_craft/app/modules/dashboard/controllers/dashboard_controller.dart';
 import 'package:cookery_craft/ui/title_widgets/text_styles.dart';
 import 'package:cookery_craft/ui/widgets/custom_see_all.dart';
 import 'package:flutter/material.dart';
@@ -13,20 +12,24 @@ import '../../../../utils/heights_and_widths.dart';
 import '../../../common_widgets/app_colors.dart';
 import '../../../common_widgets/recipe_card4.dart';
 import '../../../routes/app_pages.dart';
+import '../../dashboard/controllers/dashboard_controller.dart';
 import '../controllers/account_controller.dart';
 
-class AccountView extends GetView<AccountController> {
+class AccountView extends StatefulWidget {
   const AccountView({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final DashboardController _dashboardController =
-        Get.put(DashboardController());
+  State<AccountView> createState() => _AccountViewState();
+}
 
-    var recipeList = _dashboardController.recipeResponse.recipes
+class _AccountViewState extends State<AccountView> {
+  @override
+  Widget build(BuildContext context) {
+    final AccountController controller = Get.put(AccountController());
+    final DashboardController _controller = Get.find<DashboardController>();
+    var recipeList = _controller.recipeResponse.recipes
         .where((recipe) => recipe.isFavorite)
         .toList();
-
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -138,21 +141,32 @@ class AccountView extends GetView<AccountController> {
               CustomSeeAll(leftText: "My Favorites"),
               h1,
               Expanded(
-                  child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, // 2 items per row
-                  crossAxisSpacing: 10, // Space between columns
-                  mainAxisSpacing: 10,
-                  childAspectRatio: 0.7,
-                ),
-                itemCount: recipeList.length,
-                // Number of items in the grid
-                itemBuilder: (context, index) {
-                  return RecipeCard4(
-                    recipe: recipeList[index],
-                  );
-                },
-              )),
+                  child: recipeList.isNotEmpty
+                      ? GridView.builder(
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2, // 2 items per row
+                            crossAxisSpacing: 10, // Space between columns
+                            mainAxisSpacing: 10,
+                            childAspectRatio: 0.7,
+                          ),
+                          itemCount: recipeList.length,
+                          // Number of items in the grid
+                          itemBuilder: (context, index) {
+                            return RecipeCard4(
+                              onFavTap: () {
+                                _controller.toggleFavoriteStatus(
+                                    recipeList[index].name);
+                                setState(() {});
+                              },
+                              recipe: recipeList[index],
+                            );
+                          },
+                        )
+                      : Center(
+                          child: Text(
+                          "No Recipe in Favorites",
+                        ))),
             ],
           ),
         ),

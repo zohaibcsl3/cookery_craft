@@ -1,23 +1,21 @@
 import 'package:get/get.dart';
 
-class AccountController extends GetxController {
-  //TODO: Implement AccountController
+import '../../dashboard/controllers/dashboard_controller.dart';
+import '../../dashboard/model/recipe_model.dart';
 
-  final count = 0.obs;
+class AccountController extends GetxController {
+  final DashboardController _dashboardController =
+      Get.find<DashboardController>();
+  late List<Recipe> recipeList;
+
   @override
   void onInit() {
+    recipeList = _dashboardController.recipeResponse.recipes
+        .where((recipe) => recipe.isFavorite)
+        .toList()
+        .obs;
+
+    print("Initialized");
     super.onInit();
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }

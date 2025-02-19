@@ -85,11 +85,11 @@ String? returnIcon(int index) {
 
 String? returnTitle(int index) {
   if (index % 3 == 0) {
-    return "Your Up-Coming Shift";
+    return "New Dish Added";
   } else if (index % 3 == 1) {
-    return "Shift change";
+    return "Some one liked your dish";
   } else if (index % 3 == 2) {
-    return "Announcement from admin";
+    return "Your dish is now Live";
   }
   return null;
 }

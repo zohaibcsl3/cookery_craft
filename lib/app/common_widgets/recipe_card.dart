@@ -1,3 +1,4 @@
+import 'package:cookery_craft/app/modules/dashboard/controllers/dashboard_controller.dart';
 import 'package:cookery_craft/app/modules/dashboard/model/recipe_model.dart';
 import 'package:cookery_craft/ui/title_widgets/text_styles.dart';
 import 'package:cookery_craft/ui/widgets/on_click.dart';
@@ -23,6 +24,8 @@ class RecipeCard extends StatefulWidget {
 class _RecipeCardState extends State<RecipeCard> {
   @override
   Widget build(BuildContext context) {
+    final DashboardController _controller = Get.find<DashboardController>();
+
     return OnClick(
       onTap: () {
         Get.toNamed(Routes.RECIPE, arguments: widget.recipe);
@@ -50,19 +53,26 @@ class _RecipeCardState extends State<RecipeCard> {
                       Positioned(
                         right: 16,
                         top: 16,
-                        child: Container(
-                          height: 24.sp,
-                          width: 24.sp,
-                          decoration: customBoxDecoration(),
-                          padding: EdgeInsets.all(
-                            8.0,
-                          ),
-                          child: SvgPicture.asset(
-                            widget.recipe.isFavorite
-                                ? Assets.svgHeartFilled
-                                : Assets.svgHeartUnfilled,
-                            // height: widget.isFavorite ? 16.0 : 12.0,
-                            // width: widget.isFavorite ? 16.0 : 12.0,
+                        child: OnClick(
+                          onTap: () {
+                            _controller
+                                .toggleFavoriteStatus(widget.recipe.name);
+                            setState(() {});
+                          },
+                          child: Container(
+                            height: 24.sp,
+                            width: 24.sp,
+                            decoration: customBoxDecoration(),
+                            padding: EdgeInsets.all(
+                              8.0,
+                            ),
+                            child: SvgPicture.asset(
+                              widget.recipe.isFavorite
+                                  ? Assets.svgHeartFilled
+                                  : Assets.svgHeartUnfilled,
+                              // height: widget.isFavorite ? 16.0 : 12.0,
+                              // width: widget.isFavorite ? 16.0 : 12.0,
+                            ),
                           ),
                         ),
                       )
