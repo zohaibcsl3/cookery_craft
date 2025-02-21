@@ -1,15 +1,15 @@
-import 'package:cookery_craft/app/common_widgets/recipe_card2.dart';
-import 'package:cookery_craft/app/common_widgets/recipe_card3.dart';
-import 'package:cookery_craft/ui/widgets/custom_see_all.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../ui/input/textfields.dart';
 import '../../../../ui/title_widgets/text_styles.dart';
+import '../../../../ui/widgets/custom_see_all.dart';
 import '../../../../ui/widgets/on_click.dart';
 import '../../../../utils/custom_card.dart';
 import '../../../../utils/heights_and_widths.dart';
 import '../../../common_widgets/app_colors.dart';
+import '../../../common_widgets/recipe_card2.dart';
+import '../../../common_widgets/recipe_card3.dart';
 import '../../dashboard/controllers/dashboard_controller.dart';
 import '../controllers/search_controller.dart';
 
@@ -25,6 +25,17 @@ class _SearchViewState extends State<SearchView> {
   Widget build(BuildContext context) {
     final SearchViewController controller = Get.put(SearchViewController());
     final DashboardController _controller = Get.find<DashboardController>();
+    return Dialog(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(""),
+          Text(""),
+          Text(""),
+          Text(""),
+        ],
+      ),
+    );
     return Scaffold(
       appBar: AppBar(
         backgroundColor: appBackgroundColor,

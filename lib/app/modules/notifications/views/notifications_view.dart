@@ -56,8 +56,6 @@ class NotificationsView extends GetView<NotificationsController> {
               Expanded(
                 child: ListView.separated(
                   padding: EdgeInsets.zero,
-                  // shrinkWrap: true,
-                  // physics: const NeverScrollableScrollPhysics(),
                   itemCount: 30,
                   itemBuilder: (context, index) {
                     return Obx(() {
