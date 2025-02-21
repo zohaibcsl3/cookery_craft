@@ -25,7 +25,6 @@ class AccountView extends StatefulWidget {
 class _AccountViewState extends State<AccountView> {
   @override
   Widget build(BuildContext context) {
-    final AccountController controller = Get.put(AccountController());
     final DashboardController _controller = Get.find<DashboardController>();
     var recipeList = _controller.recipeResponse.recipes
         .where((recipe) => recipe.isFavorite)

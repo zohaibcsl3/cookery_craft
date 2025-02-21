@@ -100,18 +100,18 @@ class CartView extends GetView<CartController> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Subtotal",
+                            "Delivery",
                             style: textFieldStyles(
                               size: 16.0,
                               color: Colors.black54,
                             ),
                           ),
                           Text(
-                            "\$35.96",
+                            "\$0.00",
                             style: textFieldStyles(
                               size: 16.0,
                               color: Colors.black,
-                              weight: FontWeight.bold,
+                              weight: FontWeight.normal,
                             ),
                           ),
                         ],
@@ -120,10 +120,11 @@ class CartView extends GetView<CartController> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Subtotal",
+                            "Total",
                             style: textFieldStyles(
                               size: 16.0,
                               color: Colors.black54,
+                              weight: FontWeight.bold,
                             ),
                           ),
                           Text(
@@ -137,10 +138,10 @@ class CartView extends GetView<CartController> {
                         ],
                       ),
                       PrimaryButton(
-                        onPressed: () {
-                          Get.toNamed(Routes.SELECT_ADDRESS);
+                        onPressed: () async {
+                          Get.toNamed(Routes.ADD_CARD);
                         },
-                        title: "Proceed to checkout",
+                        title: "Make Payment",
                         hMargin: 0,
                         height: 50.0,
                         borderRadius: 16.0,

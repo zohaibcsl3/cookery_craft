@@ -28,7 +28,9 @@ class _RecipeCardState extends State<RecipeCard> {
 
     return OnClick(
       onTap: () {
-        Get.toNamed(Routes.RECIPE, arguments: widget.recipe);
+        Get.toNamed(Routes.RECIPE, arguments: widget.recipe)?.then((v) {
+          setState(() {});
+        });
       },
       child: Card(
         shape: RoundedRectangleBorder(
@@ -98,61 +100,27 @@ class _RecipeCardState extends State<RecipeCard> {
                     ),
                     h1,
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            SvgPicture.asset(
-                              Assets.svgCalories,
-                              height: 14.0,
-                              width: 14.0,
-                              color: Colors.grey.shade500,
-                            ),
-                            SizedBox(
-                              width: 10.0,
-                            ),
-                            Text(
-                              "120 Kcal",
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: textFieldStyles(
-                                color: Colors.grey.shade500,
-                                size: 12.px,
-                              ),
-                            )
-                          ],
+                        SvgPicture.asset(
+                          Assets.svgTimeCircle,
+                          height: 14.0,
+                          width: 14.0,
+                          color: Colors.grey.shade500,
                         ),
-                        Icon(
-                          Icons.circle_rounded,
-                          color: Colors.grey.shade400,
-                          size: 8.0,
-                        ),
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            SvgPicture.asset(
-                              Assets.svgTimeCircle,
-                              height: 14.0,
-                              width: 14.0,
-                              color: Colors.grey.shade500,
-                            ),
-                            SizedBox(
-                              width: 10.0,
-                            ),
-                            Text(
-                              widget.recipe.makeTime,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: textFieldStyles(
-                                color: Colors.grey.shade500,
-                                size: 12.px,
-                              ),
-                            )
-                          ],
-                        ),
+                        w1,
+                        Text(
+                          widget.recipe.makeTime,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: textFieldStyles(
+                            color: Colors.grey.shade500,
+                            size: 12.px,
+                          ),
+                        )
                       ],
-                    )
+                    ),
                   ],
                 ),
               ),

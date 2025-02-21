@@ -109,7 +109,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.ADD_CARD,
-      page: () => const AddCardView(),
+      page: () => AddCardView(),
       binding: AddCardBinding(),
     ),
   ];

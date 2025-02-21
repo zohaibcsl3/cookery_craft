@@ -11,16 +11,12 @@ class ApiFetch {
       {required String email, required String password}) async {
     DisplayUtils.showLoader();
     try {
-      // "eve.holt@reqrses.in"
-      // "cityslicka"
       var data = {
         "email": email,
         "password": password,
       };
       var response = await dio.post("https://reqres.in/api/login", data: data);
-      print(response);
       if (response.statusCode == 200) {
-        print(response.data);
         DisplayUtils.removeLoader();
         DisplayUtils.showSnackBar(Get.context!, "Login Successful");
         return response.data;
@@ -51,9 +47,7 @@ class ApiFetch {
       };
       var response =
           await dio.post("https://reqres.in/api/register", data: data);
-      print(response);
       if (response.statusCode == 200) {
-        print(response.data);
         DisplayUtils.removeLoader();
         DisplayUtils.showSnackBar(Get.context!, "Signup Successful");
         return response.data;

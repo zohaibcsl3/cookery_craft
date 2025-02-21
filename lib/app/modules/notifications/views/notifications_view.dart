@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import '../../../../generated/assets.dart';
 import '../../../../ui/title_widgets/text_styles.dart';
+import '../../../../utils/display/display_utils.dart';
 import '../../../../utils/heights_and_widths.dart';
 import '../../../../utils/helper_widgets.dart';
 import '../../../common_widgets/custom_notification_widget.dart';
@@ -15,6 +16,8 @@ class NotificationsView extends GetView<NotificationsController> {
 
   @override
   Widget build(BuildContext context) {
+    final NotificationsController controller =
+        Get.put(NotificationsController());
     return Scaffold(
       appBar: AppBar(
         backgroundColor: appBackgroundColor,
@@ -36,6 +39,17 @@ class NotificationsView extends GetView<NotificationsController> {
               h1,
               CustomSeeAll(
                 leftText: "Today",
+                showSeeAll: true,
+                seeAllClick: () {
+                  controller.changeRead();
+                  if (controller.isRead.value) {
+                    DisplayUtils.showSnackBar(
+                        context, "All Notifications Marked to Read");
+                  } else {
+                    DisplayUtils.showSnackBar(
+                        context, "All Notifications Marked to UnRead");
+                  }
+                },
                 rightText: "Mark all as read",
               ),
               h1,
@@ -46,8 +60,20 @@ class NotificationsView extends GetView<NotificationsController> {
                   // physics: const NeverScrollableScrollPhysics(),
                   itemCount: 30,
                   itemBuilder: (context, index) {
+                    return Obx(() {
+                      return AnnouncementCard(
+                        isUnRead:
+                            controller.isRead.value ? false : index % 3 == 2,
+                        title: returnTitle(index)!,
+                        time: "20 min",
+                        content:
+                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
+                        iconPath: returnIcon(index)!,
+                      );
+                    });
                     return AnnouncementCard(
-                      isUnRead: index % 3 == 2,
+                      isUnRead:
+                          controller.isRead.value ? false : index % 3 == 2,
                       title: returnTitle(index)!,
                       time: "20 min",
                       content:

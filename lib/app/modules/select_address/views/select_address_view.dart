@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../../utils/heights_and_widths.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/select_address_controller.dart';
 
@@ -28,55 +27,55 @@ class SelectAddressView extends GetView<SelectAddressController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
-              child: Column(
-                children: [
-                  Text(
-                    "Delivery Address",
-                    style: textFieldStyles(
-                      size: 16.0,
-                      weight: FontWeight.w600,
-                    ),
-                  ),
-                  h6,
-                  Obx(() {
-                    return Column(
-                      children:
-                          List.generate(controller.address.length, (index) {
-                        var model = controller.address[index];
-                        return AddressWidget(
-                          addressModel: model,
-                          selectedAddress: controller.selectedAddress.value,
-                          onTap: () {
-                            controller.selectedAddress.value = model.name;
-                          },
-                        );
-                      }),
-                    );
-                  }),
-                  h6,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        height: 34.0,
-                        width: 34.0,
-                        decoration: customBoxDecoration(
-                          borderColor: Get.theme.primaryColor,
-                          radius: 100.0,
-                        ),
-                        child: Icon(
-                          Icons.add,
-                          color: Get.theme.primaryColor,
-                        ),
-                      ),
-                      w2,
-                      Text("Add New Address")
-                    ],
-                  ),
-                ],
-              ),
-            ),
+            // Expanded(
+            //   child: Column(
+            //     children: [
+            //       Text(
+            //         "Delivery Address",
+            //         style: textFieldStyles(
+            //           size: 16.0,
+            //           weight: FontWeight.w600,
+            //         ),
+            //       ),
+            //       h6,
+            //       Obx(() {
+            //         return Column(
+            //           children:
+            //               List.generate(controller.address.length, (index) {
+            //             var model = controller.address[index];
+            //             return AddressWidget(
+            //               addressModel: model,
+            //               selectedAddress: controller.selectedAddress.value,
+            //               onTap: () {
+            //                 controller.selectedAddress.value = model.name;
+            //               },
+            //             );
+            //           }),
+            //         );
+            //       }),
+            //       h6,
+            //       Row(
+            //         mainAxisAlignment: MainAxisAlignment.center,
+            //         children: [
+            //           Container(
+            //             height: 34.0,
+            //             width: 34.0,
+            //             decoration: customBoxDecoration(
+            //               borderColor: Get.theme.primaryColor,
+            //               radius: 100.0,
+            //             ),
+            //             child: Icon(
+            //               Icons.add,
+            //               color: Get.theme.primaryColor,
+            //             ),
+            //           ),
+            //           w2,
+            //           Text("Add New Address")
+            //         ],
+            //       ),
+            //     ],
+            //   ),
+            // ),
             PrimaryButton(
               onPressed: () {
                 Get.toNamed(Routes.ADD_CARD)?.then((v) {

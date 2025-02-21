@@ -6,11 +6,9 @@ import 'package:cookery_craft/ui/widgets/custom_see_all.dart';
 import 'package:cookery_craft/ui/widgets/on_click.dart';
 import 'package:cookery_craft/utils/custom_card.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../../generated/assets.dart';
 import '../../../../utils/heights_and_widths.dart';
 import '../../../common_widgets/app_colors.dart';
 import '../../../common_widgets/carousal_card.dart';
@@ -32,42 +30,42 @@ class HomeView extends GetView<HomeController> {
         child: Column(
           children: [
             h2,
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Row(
                   children: [
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.sunny,
-                          color: Get.theme.primaryColor,
-                          size: 24.0,
-                        ),
-                        w2,
-                        Text("Good Morning")
-                      ],
+                    Icon(
+                      Icons.sunny,
+                      color: Get.theme.primaryColor,
+                      size: 24.0,
                     ),
-                    h0P2,
-                    Text(
-                      "Hamza",
-                      style: Get.context!.textTheme.bodyMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 24.0,
-                        color: Colors.black,
-                      ),
-                    ),
+                    w2,
+                    Text("Good Morning")
                   ],
                 ),
-                SvgPicture.asset(
-                  Assets.svgBuy,
-                  color: Colors.black,
-                )
+                h0P2,
+                Text(
+                  "Hamza",
+                  style: Get.context!.textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 24.0,
+                    color: Colors.black,
+                  ),
+                ),
               ],
             ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //   crossAxisAlignment: CrossAxisAlignment.start,
+            //   children: [
+            //
+            //     SvgPicture.asset(
+            //       Assets.svgBuy,
+            //       color: Colors.black,
+            //     )
+            //   ],
+            // ),
             h2,
             TitleWidget(
               title: "Featured",

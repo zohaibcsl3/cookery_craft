@@ -217,14 +217,15 @@ class UnderLineInputField extends StatelessWidget {
   final TextEditingController controller;
   final Color borderColor;
   final String? prefixIcon;
-
+  final TextInputType keyBoardType;
   const UnderLineInputField(
       {super.key,
       this.title = "",
       required this.controller,
       this.borderColor = Colors.grey,
       this.hintText,
-      this.prefixIcon});
+      this.prefixIcon,
+      this.keyBoardType = TextInputType.text});
 
   @override
   Widget build(BuildContext context) {
@@ -238,6 +239,7 @@ class UnderLineInputField extends StatelessWidget {
           maxLength: 255,
           controller: controller,
           maxLengthEnforcement: MaxLengthEnforcement.none,
+          keyboardType: keyBoardType,
           decoration: InputDecoration(
               counterText: "",
               hintText: hintText,

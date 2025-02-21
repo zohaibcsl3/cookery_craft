@@ -1,4 +1,4 @@
-import 'package:cookery_craft/ui/input/input_field.dart';
+import 'package:cookery_craft/ui/input/textfields.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,8 +10,12 @@ import '../../../../utils/heights_and_widths.dart';
 import '../controllers/add_card_controller.dart';
 
 class AddCardView extends GetView<AddCardController> {
-  const AddCardView({super.key});
-
+  AddCardView({super.key});
+  final TextEditingController cardNumberController = TextEditingController();
+  final TextEditingController cardHolderController = TextEditingController();
+  final TextEditingController expiryDateController = TextEditingController();
+  final TextEditingController cvvController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,36 +30,52 @@ class AddCardView extends GetView<AddCardController> {
             h5,
             Expanded(
               flex: 2,
-              child: Column(
-                children: [
-                  UnderLineInputField(
-                    title: "CARD HOLDER NAME",
-                    controller: TextEditingController(),
-                  ),
-                  h6,
-                  UnderLineInputField(
-                    title: "CARD NUMBER",
-                    controller: TextEditingController(),
-                  ),
-                  h6,
-                  Row(
-                    children: [
-                      Expanded(
-                        child: UnderLineInputField(
-                          title: "EXP DATE",
-                          controller: TextEditingController(),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    h2,
+                    textFieldsWithTitle(
+                        controller: cardNumberController,
+                        hintText: "XXXX XXXX XXXX XXXX",
+                        onEmptyText: "Card Number is Required",
+                        maxWords: 16,
+                        validation: true,
+                        keyboardType: TextInputType.number),
+                    h2,
+                    textFieldsWithTitle(
+                      controller: cardHolderController,
+                      onEmptyText: "Please Enter Card Holder Name",
+                      hintText: "Full Name",
+                      maxWords: 256,
+                      validation: true,
+                    ),
+                    h2,
+                    Row(
+                      children: [
+                        Expanded(
+                          child: textFieldsWithTitle(
+                              controller: expiryDateController,
+                              hintText: "Expiry Date",
+                              maxWords: 5,
+                              validation: true,
+                              onEmptyText: "Expiry Date is Required",
+                              keyboardType: TextInputType.datetime),
                         ),
-                      ),
-                      w2,
-                      Expanded(
-                        child: UnderLineInputField(
-                          title: "CVC",
-                          controller: TextEditingController(),
+                        w2,
+                        Expanded(
+                          child: textFieldsWithTitle(
+                              controller: cvvController,
+                              onEmptyText: "Cvv is Required",
+                              hintText: "CVV",
+                              maxWords: 3,
+                              validation: true,
+                              keyboardType: TextInputType.number),
                         ),
-                      ),
-                    ],
-                  )
-                ],
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
             Expanded(
@@ -95,18 +115,18 @@ class AddCardView extends GetView<AddCardController> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Subtotal",
+                          "Delivery",
                           style: textFieldStyles(
                             size: 16.0,
                             color: Colors.black54,
                           ),
                         ),
                         Text(
-                          "\$35.96",
+                          "\$0.00",
                           style: textFieldStyles(
                             size: 16.0,
                             color: Colors.black,
-                            weight: FontWeight.bold,
+                            weight: FontWeight.normal,
                           ),
                         ),
                       ],
@@ -115,10 +135,11 @@ class AddCardView extends GetView<AddCardController> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Subtotal",
+                          "Total",
                           style: textFieldStyles(
                             size: 16.0,
                             color: Colors.black54,
+                            weight: FontWeight.bold,
                           ),
                         ),
                         Text(
@@ -133,37 +154,42 @@ class AddCardView extends GetView<AddCardController> {
                     ),
                     PrimaryButton(
                       onPressed: () async {
-                        Get.dialog(Dialog(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(
-                                  "Processing...",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.bold,
+                        if (_formKey.currentState!.validate()) {
+                          Get.dialog(Dialog(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    "Processing...",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
-                                ),
-                                SizedBox(height: 16.0),
-                                CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation(
-                                    Colors.black,
+                                  SizedBox(height: 16.0),
+                                  CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation(
+                                      Colors.black,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        ));
-                        Future.delayed(Duration(seconds: 5), () {
-                          Get.back();
-                          DisplayUtils.showSnackBar(context,
-                              "Order Completed your ingredients are on the way");
-                        }).then((v) {
-                          Get.back();
-                        });
+                          ));
+                          Future.delayed(Duration(seconds: 5), () {
+                            Get.back();
+                            DisplayUtils.showSnackBar(context,
+                                "Order Completed your ingredients are on the way");
+                          }).then((v) {
+                            Get.back();
+                          });
+                        } else {
+                          DisplayUtils.showSnackBar(
+                              context, "Please fill all required fields");
+                        }
                       },
                       title: "Make Payment",
                       hMargin: 0,
