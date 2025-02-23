@@ -20,7 +20,7 @@ class LoginController extends GetxController {
       final LoginResponse? loginResponse = LoginResponse.fromJson(response);
       if (loginResponse?.token != null) {
         DisplayUtils.showSnackBar(Get.context!, "Login Successful");
-        Get.offAndToNamed(Routes.DASHBOARD);
+        Get.offAllNamed(Routes.DASHBOARD);
       } else {
         DisplayUtils.removeLoader();
         DisplayUtils.showSnackBar(Get.context!, "Something Went Wrong");
@@ -30,5 +30,12 @@ class LoginController extends GetxController {
 
   void changeVisible() {
     isVisible.value = !isVisible.value;
+  }
+
+  @override
+  void onInit() {
+    emailController.text = "eve.holt@reqres.in";
+    passwordController.text = "cityslicka";
+    super.onInit();
   }
 }

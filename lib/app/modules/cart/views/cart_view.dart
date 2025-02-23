@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import '../../../../utils/heights_and_widths.dart';
 import '../../../common_widgets/app_colors.dart';
 import '../../../common_widgets/cart_tile_1.dart';
-import '../../../common_widgets/recipe_constants.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/cart_controller.dart';
 
@@ -16,6 +15,7 @@ class CartView extends GetView<CartController> {
 
   @override
   Widget build(BuildContext context) {
+    final CartController controller = Get.put(CartController());
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -38,28 +38,32 @@ class CartView extends GetView<CartController> {
           children: [
             Expanded(
               flex: 9,
-              child: GridView.builder(
-                padding: EdgeInsets.symmetric(
-                  vertical: 12.0,
-                ),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 1,
-                  // 2 items per row
-                  crossAxisSpacing: 10,
-                  // Space between columns
-                  mainAxisSpacing: 8,
-                  childAspectRatio: 3.8,
-                ),
-                itemCount: ingredientsList.length,
-                // Number of items in the grid
-                itemBuilder: (context, index) {
-                  return CartTile1(
-                    isCartPage: true,
-                    name: ingredientsList[index]["name"]!,
-                    imagePath: ingredientsList[index]["image"]!,
-                  );
-                },
-              ),
+              child: Obx(() {
+                return ListView.builder(
+                  padding: EdgeInsets.symmetric(
+                    vertical: 12.0,
+                  ),
+                  itemCount: controller.ingredients.length,
+                  itemBuilder: (context, index) {
+                    return CartTile1(
+                      isCartPage: true,
+                      name: controller.ingredients[index].name,
+                      imagePath: controller.ingredients[index].image,
+                      quantity: controller.ingredients[index].quantity,
+                      onAdd: () {
+                        controller.updateIngredientQuantity(
+                            controller.ingredients[index].name, 1);
+                      },
+                      onSubtract: () {
+                        if (controller.ingredients[index].quantity >= 1) {
+                          controller.updateIngredientQuantity(
+                              controller.ingredients[index].name, -1);
+                        }
+                      },
+                    );
+                  },
+                );
+              }),
             ),
             h1,
             Expanded(

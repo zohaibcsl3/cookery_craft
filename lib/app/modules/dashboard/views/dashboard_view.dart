@@ -1,7 +1,7 @@
 import 'package:cookery_craft/app/modules/account/views/account_view.dart';
 import 'package:cookery_craft/app/modules/home/views/home_view.dart';
 import 'package:cookery_craft/app/modules/notifications/views/notifications_view.dart';
-import 'package:cookery_craft/app/modules/search/views/search_view.dart';
+import 'package:cookery_craft/app/modules/search/views/ai_chat_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,7 +27,7 @@ class _DashboardViewState extends State<DashboardView> {
             return HomeView();
           case 1:
             return Center(
-              child: SearchView(),
+              child: AiChatView(),
             );
           case 4:
             return Center(

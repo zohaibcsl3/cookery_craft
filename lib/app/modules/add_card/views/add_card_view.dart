@@ -11,11 +11,13 @@ import '../controllers/add_card_controller.dart';
 
 class AddCardView extends GetView<AddCardController> {
   AddCardView({super.key});
+
   final TextEditingController cardNumberController = TextEditingController();
   final TextEditingController cardHolderController = TextEditingController();
   final TextEditingController expiryDateController = TextEditingController();
   final TextEditingController cvvController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +29,6 @@ class AddCardView extends GetView<AddCardController> {
         padding: const EdgeInsets.all(18.0),
         child: Column(
           children: [
-            h5,
             Expanded(
               flex: 2,
               child: Form(
@@ -36,6 +37,7 @@ class AddCardView extends GetView<AddCardController> {
                   children: [
                     h2,
                     textFieldsWithTitle(
+                        title: "Card Number",
                         controller: cardNumberController,
                         hintText: "XXXX XXXX XXXX XXXX",
                         onEmptyText: "Card Number is Required",
@@ -44,6 +46,7 @@ class AddCardView extends GetView<AddCardController> {
                         keyboardType: TextInputType.number),
                     h2,
                     textFieldsWithTitle(
+                      title: "Card Holder Name",
                       controller: cardHolderController,
                       onEmptyText: "Please Enter Card Holder Name",
                       hintText: "Full Name",
@@ -52,9 +55,11 @@ class AddCardView extends GetView<AddCardController> {
                     ),
                     h2,
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Expanded(
                           child: textFieldsWithTitle(
+                              title: "Expiry Date",
                               controller: expiryDateController,
                               hintText: "Expiry Date",
                               maxWords: 5,
@@ -66,6 +71,7 @@ class AddCardView extends GetView<AddCardController> {
                         Expanded(
                           child: textFieldsWithTitle(
                               controller: cvvController,
+                              title: "Cvv",
                               onEmptyText: "Cvv is Required",
                               hintText: "CVV",
                               maxWords: 3,

@@ -13,7 +13,7 @@ void main() {
       return GetMaterialApp(
         theme: AppThemeData.lightTheme,
         debugShowCheckedModeBanner: false,
-        title: "Cookery Craft",
+        title: "Feast Flow",
         initialRoute: AppPages.INITIAL,
         builder: (BuildContext context, Widget? child) {
           child = BotToastInit()(context, child);

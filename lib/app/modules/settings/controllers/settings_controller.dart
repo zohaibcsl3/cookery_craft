@@ -1,23 +1,27 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class SettingsController extends GetxController {
-  //TODO: Implement SettingsController
+  final TextEditingController nameController = TextEditingController(),
+      emailController = TextEditingController(),
+      passwordController = TextEditingController();
 
-  final count = 0.obs;
+  RxBool isPasswordVisible = RxBool(false);
+
+  void changePasswordVisibility() {
+    if (isPasswordVisible.value == false) {
+      isPasswordVisible.value = true;
+    }
+    else {
+      isPasswordVisible.value = false;
+    }
+  }
+
   @override
   void onInit() {
+    nameController.text = "Hamza";
+    emailController.text = "eve.holt@reqres.in";
+    passwordController.text = "cityslicka";
     super.onInit();
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }

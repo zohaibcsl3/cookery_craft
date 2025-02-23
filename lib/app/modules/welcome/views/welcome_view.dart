@@ -91,7 +91,8 @@ class WelcomeView extends GetView<WelcomeController> {
                   left: 0,
                   right: 0,
                   child: SvgPicture.asset(
-                    Assets.svgLogoWhite,
+                    Assets.svgLogo,
+                    color: Colors.white,
                   ),
                 ),
                 Positioned(

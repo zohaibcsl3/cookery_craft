@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
@@ -26,10 +27,10 @@ class SignupView extends GetView<SignupController> {
           SizedBox(
             height: 30.h,
             child: Center(
-              child: Image.asset(
-                Assets.pngLogo,
-              ),
-            ),
+                child: SvgPicture.asset(
+              Assets.svgLogo,
+              color: Get.theme.primaryColor,
+            )),
           ),
           Expanded(
             child: Padding(

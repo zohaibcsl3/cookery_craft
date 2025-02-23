@@ -1,4 +1,5 @@
 import 'package:cookery_craft/ui/button/primary_button.dart';
+import 'package:cookery_craft/ui/widgets/password_suffix_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -80,7 +81,7 @@ class SettingsView extends GetView<SettingsController> {
               ),
               verticalSpace(),
               textFieldsWithTitle(
-                controller: TextEditingController(),
+                controller: controller.nameController,
                 hintText: "Enter Name",
                 title: "Name",
                 validation: false,
@@ -92,7 +93,7 @@ class SettingsView extends GetView<SettingsController> {
               ),
               verticalSpace(),
               textFieldsWithTitle(
-                controller: TextEditingController(),
+                controller: controller.emailController,
                 hintText: "Enter Email",
                 title: "Email",
                 validation: false,
@@ -104,10 +105,14 @@ class SettingsView extends GetView<SettingsController> {
               ),
               verticalSpace(),
               textFieldsWithTitle(
-                controller: TextEditingController(),
+                controller: controller.passwordController,
                 hintText: "Enter Password",
                 title: "Password",
                 validation: false,
+                obscureText: true,
+                suffix: PasswordSuffixIcon(
+                    isPasswordVisible: controller.isPasswordVisible.value,
+                    onTap: () {}),
                 titleStyle: textFieldStyles(
                   size: 16.0,
                   color: Colors.black,

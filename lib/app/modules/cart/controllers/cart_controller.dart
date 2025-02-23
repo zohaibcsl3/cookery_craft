@@ -1,23 +1,36 @@
+import 'package:cookery_craft/app/models/ingredients_model.dart';
 import 'package:get/get.dart';
 
-class CartController extends GetxController {
-  //TODO: Implement CartController
+import '../../../common_widgets/recipe_constants.dart';
 
-  final count = 0.obs;
+class CartController extends GetxController {
+  RxList<Ingredient> ingredients = <Ingredient>[].obs;
+
   @override
   void onInit() {
+    final IngredientsModel list = ingredientsModelFromJson(ingredientsList);
+    ingredients = list.ingredients.obs;
+    update([ingredients]);
     super.onInit();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
+  // Method to update the quantity of an ingredient
+  void updateIngredientQuantity(String ingredientName, int quantityChange) {
+    // Find the ingredient by name
+    int index = ingredients
+        .indexWhere((ingredient) => ingredient.name == ingredientName);
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
+    if (index != -1) {
+      // Create a new ingredient object with the updated quantity
+      Ingredient updatedIngredient = ingredients[index].copyWith(
+        quantity: ingredients[index].quantity + quantityChange,
+      );
 
-  void increment() => count.value++;
+      // Update the ingredient in the list
+      ingredients[index] = updatedIngredient;
+
+      // Notify listeners to update the UI
+      update([ingredients]);
+    }
+  }
 }

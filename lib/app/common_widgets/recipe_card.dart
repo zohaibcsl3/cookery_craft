@@ -42,6 +42,7 @@ class _RecipeCardState extends State<RecipeCard> {
           padding: const EdgeInsets.all(12.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
                 flex: 2,

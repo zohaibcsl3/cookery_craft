@@ -32,7 +32,7 @@ class SignupController extends GetxController {
       final SignUpResponse? signUpResponse = SignUpResponse.fromJson(response);
       if (signUpResponse?.token != null) {
         DisplayUtils.showSnackBar(Get.context!, "Signup Successful");
-        Get.offAndToNamed(Routes.DASHBOARD);
+        Get.offAllNamed(Routes.DASHBOARD);
       } else {
         DisplayUtils.removeLoader();
         DisplayUtils.showSnackBar(Get.context!, "Something Went Wrong");

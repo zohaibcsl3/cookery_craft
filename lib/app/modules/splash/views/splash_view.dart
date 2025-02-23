@@ -34,7 +34,8 @@ class _SplashViewState extends State<SplashView> {
             flex: 2,
             child: Center(
               child: SvgPicture.asset(
-                Assets.svgLogoWhite,
+                Assets.svgLogo,
+                color: Colors.white,
               ),
             ),
           ),

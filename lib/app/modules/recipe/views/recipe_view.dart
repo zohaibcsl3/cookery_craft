@@ -103,6 +103,7 @@ class _RecipeViewState extends State<RecipeView> {
                       vertical: 12.0,
                     ),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
                           width: 20.w,

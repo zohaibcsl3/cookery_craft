@@ -19,7 +19,7 @@ import '../modules/profile/views/profile_view.dart';
 import '../modules/recipe/bindings/recipe_binding.dart';
 import '../modules/recipe/views/recipe_view.dart';
 import '../modules/search/bindings/search_binding.dart';
-import '../modules/search/views/search_view.dart';
+import '../modules/search/views/ai_chat_view.dart';
 import '../modules/select_address/bindings/select_address_binding.dart';
 import '../modules/select_address/views/select_address_view.dart';
 import '../modules/settings/bindings/settings_binding.dart';
@@ -69,7 +69,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.SEARCH,
-      page: () => const SearchView(),
+      page: () => const AiChatView(),
       binding: SearchBinding(),
     ),
     GetPage(

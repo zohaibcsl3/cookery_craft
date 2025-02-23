@@ -5,6 +5,7 @@ import 'package:cookery_craft/ui/widgets/rich_text_widget.dart';
 import 'package:cookery_craft/utils/display/display_utils.dart';
 import 'package:cookery_craft/utils/helper_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
@@ -25,8 +26,9 @@ class LoginView extends GetView<LoginController> {
           SizedBox(
             height: 30.h,
             child: Center(
-              child: Image.asset(
-                Assets.pngLogo,
+              child: SvgPicture.asset(
+                Assets.svgLogo,
+                color: Get.theme.primaryColor,
               ),
             ),
           ),

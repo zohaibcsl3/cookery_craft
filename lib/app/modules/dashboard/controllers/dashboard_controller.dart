@@ -7,6 +7,16 @@ import '../model/recipe_model.dart';
 
 class DashboardController extends GetxController {
   // Observable bottomBar
+  RxBool cancelPaymentDialog = RxBool(false);
+  RxBool isPaymentCompleted = RxBool(false);
+
+  void changePaymentDialog() {
+    cancelPaymentDialog.value = true;
+  }
+
+  void changePaymentStatus() {
+    isPaymentCompleted.value = true;
+  }
 
   final RecipeResponse recipeResponse = RecipeResponse.fromJson(recipesJson);
   RxInt selectedIndex = RxInt(0);
@@ -20,8 +30,8 @@ class DashboardController extends GetxController {
     BottomNavModel(
       title: "",
       isSelected: false,
-      selectedIcon: Assets.svgSearchFilled,
-      unSelectedIcon: Assets.svgSearch,
+      selectedIcon: Assets.svgChatFilled,
+      unSelectedIcon: Assets.svgChatUnfilled,
     ),
     BottomNavModel(
       title: "",

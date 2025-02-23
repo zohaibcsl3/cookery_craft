@@ -11,11 +11,17 @@ class CartTile1 extends StatefulWidget {
       {super.key,
       this.isCartPage = false,
       required this.name,
-      required this.imagePath});
+      required this.imagePath,
+      this.onAdd,
+      this.onSubtract,
+      required this.quantity});
 
   final String name;
   final String imagePath;
+  final int quantity;
   final bool isCartPage;
+  final VoidCallback? onAdd;
+  final VoidCallback? onSubtract;
 
   @override
   State<CartTile1> createState() => _CartTile1State();
@@ -24,7 +30,6 @@ class CartTile1 extends StatefulWidget {
 class _CartTile1State extends State<CartTile1> {
   @override
   Widget build(BuildContext context) {
-    final CardTile1Controller controller = Get.put(CardTile1Controller());
     return Card(
       elevation: 4.0,
       shape: RoundedRectangleBorder(
@@ -69,9 +74,7 @@ class _CartTile1State extends State<CartTile1> {
             Row(
               children: [
                 OnClick(
-                  onTap: () {
-                    controller.subQuantity();
-                  },
+                  onTap: widget.onSubtract ?? () {},
                   child: Container(
                     height: 24.0,
                     width: 24.0,
@@ -91,19 +94,15 @@ class _CartTile1State extends State<CartTile1> {
                   ),
                 ),
                 w2,
-                Obx(() {
-                  return Text(
-                    controller.quantity.value.toString(),
-                    style: textFieldStyles(
-                      size: 16.0,
-                    ),
-                  );
-                }),
+                Text(
+                  widget.quantity.toString(),
+                  style: textFieldStyles(
+                    size: 16.0,
+                  ),
+                ),
                 w2,
                 OnClick(
-                  onTap: () {
-                    controller.addQuantity();
-                  },
+                  onTap: widget.onAdd ?? () {},
                   child: Container(
                     height: 24.0,
                     width: 24.0,
@@ -128,19 +127,5 @@ class _CartTile1State extends State<CartTile1> {
         ),
       ),
     );
-  }
-}
-
-class CardTile1Controller extends GetxController {
-  RxInt quantity = RxInt(2);
-
-  void addQuantity() {
-    quantity.value++; // Correctly increment the value
-  }
-
-  void subQuantity() {
-    if (quantity.value > 0) {
-      quantity.value--; // Correctly decrement the value
-    }
   }
 }

@@ -1,3 +1,4 @@
+import 'package:cookery_craft/app/common_widgets/banner.dart';
 import 'package:cookery_craft/app/common_widgets/recipe_card.dart';
 import 'package:cookery_craft/app/modules/dashboard/controllers/dashboard_controller.dart';
 import 'package:cookery_craft/ui/title_widgets/text_styles.dart';
@@ -7,11 +8,9 @@ import 'package:cookery_craft/ui/widgets/on_click.dart';
 import 'package:cookery_craft/utils/custom_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sizer/sizer.dart';
 
 import '../../../../utils/heights_and_widths.dart';
 import '../../../common_widgets/app_colors.dart';
-import '../../../common_widgets/carousal_card.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -77,20 +76,21 @@ class HomeView extends GetView<HomeController> {
               padding: EdgeInsets.zero,
             ),
             h1,
-            SizedBox(
-              height: 20.h,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                padding: EdgeInsets.zero,
-                itemBuilder: (context, index) {
-                  return CarousalCard();
-                },
-                separatorBuilder: (BuildContext context, int index) {
-                  return w5;
-                },
-                itemCount: 10,
-              ),
-            ),
+            // SizedBox(
+            //   height: 20.h,
+            //   child: ListView.separated(
+            //     scrollDirection: Axis.horizontal,
+            //     padding: EdgeInsets.zero,
+            //     itemBuilder: (context, index) {
+            //       return CarousalCard();
+            //     },
+            //     separatorBuilder: (BuildContext context, int index) {
+            //       return w5;
+            //     },
+            //     itemCount: 10,
+            //   ),
+            // ),
+            Banners(),
             h2,
             CustomSeeAll(
               leftText: 'Category',

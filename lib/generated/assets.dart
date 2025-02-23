@@ -2,6 +2,9 @@
 class Assets {
   Assets._();
 
+  static const String banners01 = 'assets/banners/01.png';
+  static const String banners02 = 'assets/banners/02.png';
+  static const String banners03 = 'assets/banners/03.png';
   static const String beverages1 = 'assets/beverages/1.png';
   static const String beverages2 = 'assets/beverages/2.png';
   static const String beverages3 = 'assets/beverages/3.png';
@@ -70,9 +73,15 @@ class Assets {
   static const String snacks3 = 'assets/snacks/3.jpg';
   static const String snacks4 = 'assets/snacks/4.jpg';
   static const String snacks5 = 'assets/snacks/5.jpg';
+  static const String svgAiChat = 'assets/svg/ai_chat.json';
+  static const String svgAiChatBot = 'assets/svg/ai_chat_bot.json';
   static const String svgArrowRight = 'assets/svg/arrow_right.svg';
   static const String svgBuy = 'assets/svg/buy.svg';
   static const String svgCalories = 'assets/svg/calories.svg';
+  static const String svgCards = 'assets/svg/cards.json';
+  static const String svgChatFilled = 'assets/svg/chat_filled.svg';
+  static const String svgChatUnfilled = 'assets/svg/chat_unfilled.svg';
+  static const String svgDonePayment = 'assets/svg/done_payment.json';
   static const String svgEdit = 'assets/svg/edit.svg';
   static const String svgFacebook = 'assets/svg/facebook.svg';
   static const String svgFats = 'assets/svg/fats.svg';
@@ -86,7 +95,6 @@ class Assets {
   static const String svgLinkedin = 'assets/svg/linkedin.svg';
   static const String svgLock = 'assets/svg/lock.svg';
   static const String svgLogo = 'assets/svg/logo.svg';
-  static const String svgLogoWhite = 'assets/svg/logo_white.svg';
   static const String svgLogout = 'assets/svg/logout.svg';
   static const String svgMail = 'assets/svg/mail.svg';
   static const String svgNotification = 'assets/svg/notification.svg';

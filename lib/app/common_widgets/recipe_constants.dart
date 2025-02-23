@@ -1,5 +1,3 @@
-import 'package:cookery_craft/generated/assets.dart';
-
 var recipesJson = {
   "Recipes": [
     {
@@ -771,25 +769,71 @@ var recipesJson = {
   ]
 };
 
-var ingredientsList = [
-  {"name": "Avocado", "image": Assets.ingredientsAvocado},
-  {"name": "Basil", "image": Assets.ingredientsBasil},
-  {"name": "Berries", "image": Assets.ingredientsBerries},
-  {"name": "Cabbage", "image": Assets.ingredientsCabbage},
-  {"name": "Chickpeas", "image": Assets.ingredientsChickpeas},
-  {"name": "Cloves", "image": Assets.ingredientsCloves},
-  {"name": "Coconut", "image": Assets.ingredientsCoconut},
-  {"name": "Dar", "image": Assets.ingredientsDar},
-  {"name": "Fish", "image": Assets.ingredientsFish},
-  {"name": "Garlic", "image": Assets.ingredientsGarlic},
-  {"name": "Green Onion", "image": Assets.ingredientsGreenOnion},
-  {"name": "JackFruit", "image": Assets.ingredientsJackfruit},
-  {"name": "Kimchi", "image": Assets.ingredientsKimchi},
-  {"name": "Meat", "image": Assets.ingredientsMeat},
-  {"name": "Onion", "image": Assets.ingredientsOnion},
-  {"name": "Peanuts", "image": Assets.ingredientsPeanuts},
-  {"name": "Rice", "image": Assets.ingredientsRice},
-  {"name": "Tortilla Chips", "image": Assets.ingredientsTortillaChips},
-  {"name": "Turmeric", "image": Assets.ingredientsTurmeric},
-  {"name": "Turmerice", "image": Assets.ingredientsTurmerice},
-];
+var ingredientsList = {
+  "Ingredients": [
+    {
+      "name": "Avocado",
+      "image": "assets/ingredients/avocado.png",
+      "quantity": 1
+    },
+    {"name": "Basil", "image": "assets/ingredients/basil.png", "quantity": 1},
+    {
+      "name": "Berries",
+      "image": "assets/ingredients/berries.png",
+      "quantity": 1
+    },
+    {
+      "name": "Cabbage",
+      "image": "assets/ingredients/cabbage.png",
+      "quantity": 1
+    },
+    {
+      "name": "Chickpeas",
+      "image": "assets/ingredients/chickpeas.png",
+      "quantity": 1
+    },
+    {"name": "Cloves", "image": "assets/ingredients/cloves.png", "quantity": 1},
+    {
+      "name": "Coconut",
+      "image": "assets/ingredients/coconut.png",
+      "quantity": 1
+    },
+    {"name": "Dar", "image": "assets/ingredients/dar.png", "quantity": 1},
+    {"name": "Fish", "image": "assets/ingredients/fish.png", "quantity": 1},
+    {"name": "Garlic", "image": "assets/ingredients/garlic.png", "quantity": 1},
+    {
+      "name": "Green Onion",
+      "image": "assets/ingredients/greenOnion.png",
+      "quantity": 1
+    },
+    {
+      "name": "JackFruit",
+      "image": "assets/ingredients/jackfruit.png",
+      "quantity": 1
+    },
+    {"name": "Kimchi", "image": "assets/ingredients/kimchi.png", "quantity": 1},
+    {"name": "Meat", "image": "assets/ingredients/meat.png", "quantity": 1},
+    {"name": "Onion", "image": "assets/ingredients/onion.png", "quantity": 1},
+    {
+      "name": "Peanuts",
+      "image": "assets/ingredients/peanuts.png",
+      "quantity": 1
+    },
+    {"name": "Rice", "image": "assets/ingredients/rice.png", "quantity": 1},
+    {
+      "name": "Tortilla Chips",
+      "image": "assets/ingredients/tortillaChips.png",
+      "quantity": 1
+    },
+    {
+      "name": "Turmeric",
+      "image": "assets/ingredients/turmeric.png",
+      "quantity": 1
+    },
+    {
+      "name": "Turmerice",
+      "image": "assets/ingredients/turmerice.png",
+      "quantity": 1
+    }
+  ]
+};
